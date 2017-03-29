@@ -7,33 +7,33 @@ Python module for linking python output to latex documents
 ## TimeIntegration.py
 first order derivative solvers 
 
- * Includes: 
+Includes: 
 
-	 * forward euler
+	* forward euler
 
-	 * backward euler 
+	* backward euler 
 
-	 * crank nicolson 
+	* crank nicolson 
 
-	 * TBDF2
+	* TBDF2
 
 
 ## TDMA.py
 Tri diagonal matrix solver for 1D systems 
 
- * Line by line tri diagonal solver for 2D systems 
+Line by line tri diagonal solver for 2D systems 
 
 
 ## ClosedMethods.py
 Closed root finding methods 
 
- * Includes:
+Includes:
 
-	 * bisection 
+	* bisection 
 
-	 * false_position 
+	* false_position 
 
-	 * ridder
+	* ridder
 
 
 ## ProgressBar.py
@@ -48,10 +48,10 @@ Compute R^2
 ## hidespines.py
 Make matplotlib plots look nice 
 
- * Remove right and top axes 
+Remove right and top axes 
 
- * changes label font 
+changes label font 
 
- * changes label size 
+changes label size 
 
 
