@@ -1,22 +1,22 @@
 ### TimeIntegration.py
 first order derivative solvers 
 
-*Includes: 
-**forward euler
-**backward euler 
-**crank nicolson 
-**TBDF2
+* Includes: 
+* * forward euler
+* * backward euler 
+* * crank nicolson 
+* * TBDF2
 ### TDMA.py
 Tri diagonal matrix solver for 1D systems 
 
-*Line by line tri diagonal solver for 2D systems
+* Line by line tri diagonal solver for 2D systems
 ### ClosedMethods.py
 Closed root finding methods 
 
-*Includes:
-**bisection 
-**false_position 
-**ridder
+* Includes:
+* * bisection 
+* * false_position 
+* * ridder
 ### ProgressBar.py
 print a command line progress bar for a for loop 
 ### Timer.py
@@ -26,6 +26,6 @@ Compute R^2
 ### hidespines.py
 Make matplotlib plots look nice 
 
-*Remove right and top axes 
-*changes label font 
-*changes label size
+* Remove right and top axes 
+* changes label font 
+* changes label size
