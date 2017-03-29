@@ -9,13 +9,13 @@ first order derivative solvers
 
 Includes: 
 
-	* forward euler
+* forward euler
 
-	* backward euler 
+* backward euler 
 
-	* crank nicolson 
+* crank nicolson 
 
-	* TBDF2
+* TBDF2
 
 
 ## TDMA.py
@@ -29,11 +29,11 @@ Closed root finding methods
 
 Includes:
 
-	* bisection 
+* bisection 
 
-	* false_position 
+* false_position 
 
-	* ridder
+* ridder
 
 
 ## ProgressBar.py
