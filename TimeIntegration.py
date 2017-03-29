@@ -2,6 +2,14 @@
 
 import numpy as np
 
+''' first order derivative solvers 
+	Includes: 
+		forward euler
+		backward euler 
+		crank nicolson 
+		TBDF2
+''' 
+
 def forwardEuler(A, f0, dt, tend, tstart=0):
 	''' Solves the system df/dt = Af using the forward euler method. 
 		Uses uniform time steps 

@@ -1,5 +1,12 @@
 import numpy as np 
 
+''' Closed root finding methods 
+	Includes:
+		bisection 
+		false_position 
+		ridder
+''' 
+
 def bisection(f,a,b,epsilon=1.0e-6):
 	""" Find the root of the function f via bisection
 		where the root lies within [a,b]

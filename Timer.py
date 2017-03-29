@@ -1,5 +1,7 @@
 import time
 
+''' Times functions ''' 
+
 class timer:
 
 	''' Object that tracks start and end time and prints elapsed time 

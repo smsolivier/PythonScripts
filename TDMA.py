@@ -4,6 +4,10 @@ import numpy as np
 
 import Timer
 
+''' Tri diagonal matrix solver for 1D systems 
+	Line by line tri diagonal solver for 2D systems 
+''' 
+
 def TDMA(a, b, c, d):
 	''' Tri diagonal matrix solver 
 		Inputs:

@@ -1,5 +1,7 @@
 import numpy as np 
 
+''' Compute R^2 ''' 
+
 def rsquared(y, f):
     ''' returns the R^2 value 
         Inputs:

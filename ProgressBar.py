@@ -1,5 +1,8 @@
 import time 
 import Timer
+
+''' print a command line progress bar for a for loop ''' 
+
 class progressbar:
 	j = 0 # store iteration number 
 
