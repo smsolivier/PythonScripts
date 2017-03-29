@@ -1,3 +1,9 @@
+# PythonScripts
+Collection of useful python scripts
+
+## texTools/
+Python module for linking python output to latex documents
+
 ## TimeIntegration.py
 first order derivative solvers 
 

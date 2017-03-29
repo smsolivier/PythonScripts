@@ -1,3 +1,6 @@
+# texTools
+Python module for linking python output to latex documents
+
 ## macro.py
 make a latex macro for easy referencing in tex writeup 
 
