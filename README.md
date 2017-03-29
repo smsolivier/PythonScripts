@@ -2,10 +2,10 @@
 first order derivative solvers 
 
 * Includes: 
-* * forward euler
-* * backward euler 
-* * crank nicolson 
-* * TBDF2
+** forward euler
+** backward euler 
+** crank nicolson 
+** TBDF2
 ### TDMA.py
 Tri diagonal matrix solver for 1D systems 
 
@@ -14,9 +14,9 @@ Tri diagonal matrix solver for 1D systems
 Closed root finding methods 
 
 * Includes:
-* * bisection 
-* * false_position 
-* * ridder
+** bisection 
+** false_position 
+** ridder
 ### ProgressBar.py
 print a command line progress bar for a for loop 
 ### Timer.py
