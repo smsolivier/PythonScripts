@@ -1,4 +1,4 @@
-### TimeIntegration.py
+## TimeIntegration.py
 first order derivative solvers 
 
  * Includes: 
@@ -12,13 +12,13 @@ first order derivative solvers
 	 * TBDF2
 
 
-### TDMA.py
+## TDMA.py
 Tri diagonal matrix solver for 1D systems 
 
  * Line by line tri diagonal solver for 2D systems 
 
 
-### ClosedMethods.py
+## ClosedMethods.py
 Closed root finding methods 
 
  * Includes:
@@ -30,16 +30,16 @@ Closed root finding methods
 	 * ridder
 
 
-### ProgressBar.py
+## ProgressBar.py
 print a command line progress bar for a for loop 
 
-### Timer.py
+## Timer.py
 Times functions 
 
-### R2.py
+## R2.py
 Compute R^2 
 
-### hidespines.py
+## hidespines.py
 Make matplotlib plots look nice 
 
  * Remove right and top axes 
