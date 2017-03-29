@@ -1,3 +1,5 @@
+''' create a latex format table ''' 
+
 class table:
 	''' Makes a Latex formatted table ''' 
 

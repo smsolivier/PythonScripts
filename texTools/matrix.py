@@ -1,3 +1,5 @@
+''' format a numpy array into a latex matrix ''' 
+
 import numpy as np 
 
 class matrix:

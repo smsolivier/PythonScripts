@@ -1,3 +1,5 @@
+''' make a latex macro for easy referencing in tex writeup ''' 
+
 class macro:
 	''' Makes Latex macros ''' 
 

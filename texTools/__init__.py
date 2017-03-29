@@ -1,3 +1,5 @@
+''' defines which modules are loaded by import * ''' 
+
 # __all__ = ['macro', 'writeNumber']
 
 import texTools.utils 
