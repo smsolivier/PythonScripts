@@ -35,7 +35,7 @@ class progressbar:
 		output(' '*(self.width-pos))
 		output('] ' + '{:.0f}'.format(percent*100) + '%')
 
-		if (self.j == self.max):
+		if (self.j == self.max-1):
 			if (self.time):
 				self.tt.stop()
 			else:
