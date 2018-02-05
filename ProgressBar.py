@@ -15,7 +15,7 @@ class progressbar:
 			self.tt = Timer.timer(' ')
 
 		# start bar 
-		print('[>' + ' '*self.width + '] 0%\r', end='')
+		print('[>' + ' '*(self.width-1) + '] 0%\r', end='')
 
 	def update(self):
 		self.j += 1 # update iteration counter 
