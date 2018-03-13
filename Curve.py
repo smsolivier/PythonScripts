@@ -1,6 +1,6 @@
 class Curve:
 
-	def __init__(self, name, freq=1):
+	def __init__(self, name='solution', freq=1):
 
 		self.name = name 
 		self.counter = 0
