@@ -35,10 +35,12 @@ class progressbar:
 		output(' '*(self.width-pos-1))
 		output('] ' + '{:.0f}'.format(percent*100) + '%')
 
-		if (self.j == self.max-1):
+		if (self.j < self.max):
+			print('\r', end='', flush=True) # continue line 
+		elif (self.j == self.max):
 			if (self.time):
 				self.tt.stop()
 			else:
 				print()
 		else:
-			print('\r', end='', flush=True) # continue line 
+			print('too many')

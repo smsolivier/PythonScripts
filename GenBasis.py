@@ -25,3 +25,8 @@ def genBasis(p, a=0, b=1):
 		dB.append(B[i].deriv())
 
 	return B, dB
+
+if __name__=='__main__':
+	B, dB = genBasis(3, -1, 1) 
+	for i in range(len(B)):
+		print(B[i]) 
