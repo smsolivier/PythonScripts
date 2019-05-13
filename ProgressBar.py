@@ -1,5 +1,6 @@
 import time 
 import Timer
+import sys 
 
 ''' print a command line progress bar for a for loop ''' 
 
@@ -19,8 +20,11 @@ class progressbar:
 		print('[>' + ' '*(self.width-1) + '] 0%\r', end='')
 		self.prev = time.time() 
 
-	def update(self):
+	def update(self, msg=''):
+		if (msg!=''):
+			msg = ', ' + msg 
 		self.j += 1 # update iteration counter 
+		print('\x1b[2K\r', end='') # clear entire line 
 
 		output = lambda str: print(str, end='')
 
@@ -39,8 +43,8 @@ class progressbar:
 
 		if (self.j < self.max):
 			if (self.time2):
-				print(' {:.3f} s/iter\r'.format(
-					time.time() - self.prev), end='', flush=True)
+				print(' {:.3f} s/iter{}\r'.format(
+					time.time() - self.prev, msg), end='', flush=True)
 				self.prev = time.time() 
 			else:
 				print('\r', end='', flush=True) # continue line 
