@@ -10,6 +10,7 @@ class Capsaicin:
 		f = open(self.fname, 'r') 
 
 		self.FCF = False 
+		self.converged = False
 		for line in f: 
 			if ('uncollided flux source calculation' in line):
 				self.FCF = True 
@@ -33,8 +34,8 @@ class Capsaicin:
 				spl = line.split() 
 				self.wtime = float(spl[2]) 
 
-		if (self.converged==False):
-			print('WARNING: ' + self.fname + ' did not converge') 
+		# if (self.converged==False):
+			# print('WARNING: ' + self.fname + ' did not converge') 
 
 if __name__=='__main__':
 	import sys 
