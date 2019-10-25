@@ -1,5 +1,7 @@
 ''' create a latex format table ''' 
 
+import texTools.utils as utils
+
 class table:
 	''' Makes a Latex formatted table ''' 
 
@@ -14,6 +16,15 @@ class table:
 			self.str += args[i] + ' & ' # add args to str
 
 		self.str += args[-1] + ' \\\\\n'
+
+	def addRow(self, name, array, fmt, hline=False):
+		self.str += name + ' & ' 
+		for i in range(len(array)-1):
+			self.str += utils.writeNumber(array[i], fmt) + ' & '
+
+		self.str += utils.writeNumber(array[-1], fmt) + ' \\\\\n'
+		if (hline):
+			self.str += r'\hline' 
 
 	def save(self, outName='macros.tex'):
 		''' Saves str to file outName ''' 
@@ -33,5 +44,7 @@ if __name__ == '__main__':
 
 	t.addLine('lineName', 'hello', 'world')
 	t.addLine('test2', 'test2')
+	a = [0,1,2]
+	t.addRow('arange', a, '{:.1f}')
 
 	t.save()
