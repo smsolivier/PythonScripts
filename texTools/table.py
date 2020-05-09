@@ -26,6 +26,17 @@ class table:
 		if (hline):
 			self.str += r'\hline' 
 
+	def addRow2(self, name, array_fmt):
+		self.str += name + ' & ' 
+		for i in range(len(array_fmt)):
+			array = array_fmt[i][0]
+			fmt = array_fmt[i][1] 
+			for j in range(len(array)):
+				self.str += utils.writeNumber(array[j]	, fmt) + (
+					' \\\\\n' if (i==len(array_fmt)-1 and j==len(array)-1) else ' & ')
+			if (i!=len(array_fmt)-1):
+				self.str += ' & '
+
 	def save(self, outName='macros.tex'):
 		''' Saves str to file outName ''' 
 
