@@ -39,16 +39,22 @@ class table:
 
 	def save(self, outName='macros.tex'):
 		''' Saves str to file outName ''' 
+		s = self.str.rstrip('\\\\\n')
 
 		out = open(outName, 'w')
 
-		out.write(self.str)
+		out.write(s)
 
 		out.close()
 
 		print('created table ', outName)
 
 		self.str = '' # reset str 
+
+	def __str__(self):
+		s = self.str.rstrip('\\\\\n')
+		self.str = '' 
+		return s
 
 if __name__ == '__main__':
 	t = table()
