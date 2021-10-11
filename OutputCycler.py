@@ -21,13 +21,16 @@ class OutputCycler:
 
 		self.count = np.zeros(len(self.paths), dtype=int)
 
-	def Get(self, i=0):
+	def Get(self, i=0, name=''):
 		count = self.count[i] 
 		self.count[i] += 1
 		if (count==0):
 			return self.paths[i]
 		else:
-			return self.paths[i].with_name(self.paths[i].stem + '_' + str(count) + self.paths[i].suffix)
+			if (len(name)==0):
+				return self.paths[i].with_name(self.paths[i].stem + '_' + str(count) + self.paths[i].suffix)
+			else:
+				return self.paths[i].with_name(self.paths[i].stem + '_' + name + self.paths[i].suffix)
 
 	def GetOpt(self, i, default):
 		tp = type(default)

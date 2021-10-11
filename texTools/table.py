@@ -17,6 +17,12 @@ class table:
 
 		self.str += args[-1] + ' \\\\\n'
 
+	def addMidLine(self):
+		self.str += r'\midrule'
+
+	def addLineSpace(self):
+		self.str += r'\addlinespace'
+
 	def addRow(self, name, array, fmt, hline=False):
 		self.str += name + ' & ' 
 		for i in range(len(array)-1):
@@ -39,16 +45,22 @@ class table:
 
 	def save(self, outName='macros.tex'):
 		''' Saves str to file outName ''' 
+		s = self.str.rstrip('\\\\\n')
 
 		out = open(outName, 'w')
 
-		out.write(self.str)
+		out.write(s)
 
 		out.close()
 
 		print('created table ', outName)
 
 		self.str = '' # reset str 
+
+	def __str__(self):
+		s = self.str.rstrip('\\\\\n')
+		self.str = '' 
+		return s
 
 if __name__ == '__main__':
 	t = table()
