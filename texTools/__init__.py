@@ -6,3 +6,4 @@ import texTools.utils
 from texTools.table import * 
 from texTools.macro import *
 from texTools.matrix import *
+from texTools.tabular import * 
