@@ -24,14 +24,14 @@ class Tabular:
 	def SetRowGroupTitle(self, title):
 		self.rgt = title 
 
-	def AddColumnGroup(self, name, start, end):
-		self.cgroup.append((name, start, end)) 
+	def AddColumnGroup(self, name, start, width):
+		self.cgroup.append((name, start, start+width)) 
 
 	def AddColumnBreak(self, c):
 		self.break_after.append(c) 
 
-	def AddRowGroup(self, name, start, end, rot=True):
-		self.rgroup.append((name, start, end, rot))
+	def AddRowGroup(self, name, start, height, rot=True):
+		self.rgroup.append((name, start, start+height, rot))
 
 	def Parse(self, args):
 		n = len(args)
@@ -48,6 +48,7 @@ class Tabular:
 
 	def __str__(self):
 		head = self.head 
+		assert(len(head)>0)
 		head_fmt = self.head_fmt 
 		df = self.df 
 		fmt = self.fmt 
