@@ -1,14 +1,16 @@
 import numpy as np 
 
 class Tabular:
-	df = []
-	fmt = []
-	head = [] 
-	head_fmt = [] 
-	cgroup = [] 
-	rgroup = [] 
-	break_after = [] 
-	rgt = ''
+	def __init__(self):
+		self.df = []
+		self.fmt = []
+		self.head = [] 
+		self.head_fmt = [] 
+		self.cgroup = [] 
+		self.rgroup = [] 
+		self.break_after = [] 
+		self.rgt = ''
+		
 	def AddRow(self, *args):
 		row, fmt = self.Parse(args) 
 		self.df.append(row)
