@@ -10,6 +10,7 @@ class Tabular:
 		self.rgroup = [] 
 		self.break_after = [] 
 		self.rgt = ''
+		self.note = ''
 		
 	def AddRow(self, *args):
 		row, fmt = self.Parse(args) 
@@ -34,6 +35,9 @@ class Tabular:
 
 	def AddRowGroup(self, name, start, height, rot=True):
 		self.rgroup.append((name, start, start+height, rot))
+
+	def AddNote(self, note):
+		self.note = note
 
 	def Parse(self, args):
 		n = len(args)
@@ -126,6 +130,8 @@ class Tabular:
 					s += '\\addlinespace\n'
 
 		s += '\\bottomrule\n\\end{tabular}'
+		if (self.note):
+			s += '\\\\\n' + self.note 
 		return s 
 
 	def Write(self, outname):
