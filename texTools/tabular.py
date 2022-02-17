@@ -1,7 +1,8 @@
 import numpy as np 
+import copy
 
 class Tabular:
-	def __init__(self):
+	def __init__(self, *args):
 		self.df = []
 		self.fmt = []
 		self.head = [] 
@@ -11,6 +12,10 @@ class Tabular:
 		self.break_after = [] 
 		self.rgt = ''
 		self.note = ''
+		self.rhighlight = [] 
+		self.chighlight = [] 
+		self.fade_color = ''
+		self.SetHeader(*args) 
 		
 	def AddRow(self, *args):
 		row, fmt = self.Parse(args) 
@@ -26,6 +31,19 @@ class Tabular:
 
 	def SetRowGroupTitle(self, title):
 		self.rgt = title 
+
+	def SetRowEmphasis(self, *rows):
+		self.rhighlight = [] 
+		for n in range(len(rows)):
+			self.rhighlight.append(rows[n])
+
+	def SetColEmphasis(self, *cols):
+		self.chighlight = [] 
+		for n in range(len(cols)):
+			self.chighlight.append(cols[n])
+
+	def SetFadeColor(self, color):
+		self.fade_color = color
 
 	def AddColumnGroup(self, name, start, width):
 		self.cgroup.append((name, start, start+width)) 
@@ -53,21 +71,23 @@ class Tabular:
 		return row, fmt 
 
 	def __str__(self):
-		head = self.head 
+		head = self.head.copy()
 		assert(len(head)>0)
-		head_fmt = self.head_fmt 
-		df = self.df 
-		fmt = self.fmt 
+		head_fmt = self.head_fmt.copy()
+		df = copy.deepcopy(self.df) # deep copy since list of lists
+		fmt = copy.deepcopy(self.fmt)
+		break_after = self.break_after.copy()
+		cgroup = self.cgroup.copy()
 		if (len(self.rgroup)):
 			head.insert(0, self.rgt)
 			head_fmt.insert(0, '{}') 
 			for i in range(len(df)):
 				df[i].insert(0, '') 
 				fmt[i].insert(0, '{}') 
-			for i in range(len(self.cgroup)):
-				self.cgroup[i] = (self.cgroup[i][0], self.cgroup[i][1]+1, self.cgroup[i][2]+1) 
-			for i in range(len(self.break_after)):
-				self.break_after[i] += 1 
+			for i in range(len(cgroup)):
+				cgroup[i] = (cgroup[i][0], cgroup[i][1]+1, cgroup[i][2]+1) 
+			for i in range(len(break_after)):
+				break_after[i] += 1 
 
 			for group in self.rgroup:
 				if (group[3]):
@@ -75,15 +95,31 @@ class Tabular:
 				else: 
 					text = group[0] 
 				df[group[1]][0] = r'\multirow{' + str(group[2]-group[1]) + '}{*}{' + text + '}'
-
 		h = len(df) 
 		w = len(head) 
 
+		row_fade = np.zeros(h, dtype=bool)
+		if (self.rhighlight):
+			for r in self.rhighlight:
+				row_fade[r] = True
+			row_fade = np.invert(row_fade)
+		col_fade = np.zeros(w, dtype=bool)
+		if (self.chighlight):
+			for c in self.chighlight:
+				col_fade[c] = True
+			col_fade = np.invert(col_fade)
+		fade = np.zeros((h,w), dtype=bool)
+		for i in range(h):
+			for j in range(w):
+				fade[i,j] = (row_fade[i] or col_fade[j])
+		if (self.rgroup):
+			fade[:,0] = False
+
 		cbreak = np.ones(w, dtype=int) 
-		for i in range(len(self.cgroup)):
-			cbreak[self.cgroup[i][2]-1] += 1 
-		for i in range(len(self.break_after)):
-			cbreak[self.break_after[i]] += 1
+		for i in range(len(cgroup)):
+			cbreak[cgroup[i][2]-1] += 1 
+		for i in range(len(break_after)):
+			cbreak[break_after[i]] += 1
 		cbreak[-1] = 0
 		rbreak = np.ones(h, dtype=int)
 		for group in self.rgroup:
@@ -91,10 +127,10 @@ class Tabular:
 		rbreak[-1] = 1 
 
 		s = r'\begin{tabular}{' + 'c'*(sum(cbreak)+2) + '}\n\\toprule\n'
-		if (len(self.cgroup)):
+		if (len(cgroup)):
 			loc = np.zeros(w, dtype=int) - 1 
-			for i in range(len(self.cgroup)):
-				group = self.cgroup[i]
+			for i in range(len(cgroup)):
+				group = cgroup[i]
 				loc[group[1]] = i 
 				loc[group[1]+1:group[2]-1] = -2 
 			i = 0
@@ -102,14 +138,14 @@ class Tabular:
 				if (idx==-1):
 					s += ' & '*cbreak[i]
 				elif (idx>=0):
-					group = self.cgroup[idx] 
+					group = cgroup[idx] 
 					s += '\\multicolumn{' + str(group[2] - group[1]) + '}{c}{' + group[0] + '} '
 
 				i += 1
 
 			s += '\\\\\n'
-			for i in range(len(self.cgroup)):
-				group = self.cgroup[i] 
+			for i in range(len(cgroup)):
+				group = cgroup[i] 
 				true_start = sum(cbreak[:group[1]+1])
 				true_end = true_start + group[2] - group[1] - 1 
 				s += r'\cmidrule{' + str(true_start) + '-' + str(true_end) + '}'
@@ -124,7 +160,11 @@ class Tabular:
 				s += '\\addlinespace\n'
 			else:	
 				for j in range(w):
-					s += fmt[i][j].format(df[i][j]) + ' ' + '& '*cbreak[j]
+					if (fade[i,j]):
+						s += ('\\textcolor{{' + self.fade_color + '}}{{' + fmt[i][j] + '}}').format(df[i][j])
+					else:
+						s += fmt[i][j].format(df[i][j])
+					s += ' ' + '& '*cbreak[j]
 				s += '\\\\\n'
 				if (rbreak[i]>1):
 					s += '\\addlinespace\n'
