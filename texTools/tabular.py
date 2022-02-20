@@ -99,6 +99,8 @@ class Tabular:
 		w = len(head) 
 
 		row_fade = np.zeros(h, dtype=bool)
+		if (self.rhighlight or self.chighlight):
+			assert(self.fade_color)
 		if (self.rhighlight):
 			for r in self.rhighlight:
 				row_fade[r] = True
@@ -138,8 +140,12 @@ class Tabular:
 				if (idx==-1):
 					s += ' & '*cbreak[i]
 				elif (idx>=0):
+					l = group[2] - group[1]
 					group = cgroup[idx] 
-					s += '\\multicolumn{' + str(group[2] - group[1]) + '}{c}{' + group[0] + '} '
+					text = group[0]
+					if (fade[:,i:i+l].all()):
+						text = '\\textcolor{'+self.fade_color+'}{'+text+'}'
+					s += '\\multicolumn{' + str(l) + '}{c}{'+text+'} '
 
 				i += 1
 
