@@ -152,7 +152,11 @@ class Tabular:
 			s += '\n'
 
 		for i in range(w):
-			s += head_fmt[i].format(head[i]) + ' ' + '& '*cbreak[i]
+			if (fade[:,i].all()):
+				s += ('\\textcolor{{' + self.fade_color + '}}{{' + head_fmt[i] + '}}').format(head[i])
+			else:
+				s += head_fmt[i].format(head[i])
+			s += ' ' + '& '*cbreak[i]
 		s += '\\\\\n\\midrule\n'
 
 		for i in range(h):
