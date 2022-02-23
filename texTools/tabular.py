@@ -114,8 +114,14 @@ class Tabular:
 		for i in range(h):
 			for j in range(w):
 				fade[i,j] = (row_fade[i] or col_fade[j])
-		if (self.rgroup):
-			fade[:,0] = False
+		for group in self.rgroup:
+			start = group[1]
+			end = group[2]
+			if (fade[start:end,1:].all()):
+				fade[start,0] = True
+				fade[start+1:end,0] = False
+			else:
+				fade[start:end,0] = False
 
 		cbreak = np.ones(w, dtype=int) 
 		for i in range(len(cgroup)):
