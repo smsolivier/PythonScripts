@@ -146,8 +146,8 @@ class Tabular:
 				if (idx==-1):
 					s += ' & '*cbreak[i]
 				elif (idx>=0):
-					l = group[2] - group[1]
 					group = cgroup[idx] 
+					l = group[2] - group[1]
 					text = group[0]
 					if (fade[:,i:i+l].all()):
 						text = '\\textcolor{'+self.fade_color+'}{'+text+'}'
